@@ -1,0 +1,23 @@
+{
+  "name": "thesis-google-play",
+  "version": "1.0.0",
+  "description": "Google Play scraper and saving results to MongoDB for my thesis work.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KOliver94/thesis-google-play.git"
+  },
+  "author": "Olivér Kecskeméty",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KOliver94/thesis-google-play/issues"
+  },
+  "homepage": "https://github.com/KOliver94/thesis-google-play#readme",
+  "dependencies": {
+    "google-play-scraper": "^6.0.1",
+    "mongodb": "^3.0.7"
+  }
+}
