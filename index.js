@@ -95,4 +95,4 @@ categories.forEach(function (object) {
     for (var i = 0; i <= 500; i += 100){
      scrapeApps(object, i);
     }
-})
+});
