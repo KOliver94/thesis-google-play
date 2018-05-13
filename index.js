@@ -63,15 +63,18 @@ var categories = [
     'FAMILY_PRETEND'
 ];
 
+const THROTTLE = 10;
+const DB_NAME = "google-play"
+
 function scrapeApps(category, start){
     gplay.list({
         num: 100,
         start: start,
         category: category,
-        throttle: 10
+        throttle: THROTTLE
     }).then(function (result) {
         result.forEach(function (result) {
-            gplay.permissions({appId: result.appId}).then(function (value) {
+            gplay.permissions({appId: result.appId, throttle: THROTTLE}).then(function (value) {
                 var object = {details: result, permission: value};
                 saveToDatabase(object, category);
             });
@@ -82,7 +85,7 @@ function scrapeApps(category, start){
 function saveToDatabase(object, category){
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
-        var dbo = db.db("google-play");
+        var dbo = db.db(DB_NAME);
         dbo.collection(category).insertOne(object, function(err, res) {
             if (err) throw err;
             console.log("1 document inserted");
@@ -93,6 +96,6 @@ function saveToDatabase(object, category){
 
 categories.forEach(function (object) {
     for (var i = 0; i <= 500; i += 100){
-     scrapeApps(object, i);
+        scrapeApps(object, i);
     }
 });
